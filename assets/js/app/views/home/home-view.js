@@ -1,18 +1,23 @@
 define([
-	"jquery",
-	"underscore",
-	"backbone"
-], function( $, _, Backbone ) {
+	'jquery',
+	'underscore',
+	'backbone',
+	'text!app/templates/myTemplate.html'
+], function( $, _, Backbone, myTemplate ) {
 	
 	var HomeView = Backbone.View.extend({
 		
-		el: $("#content"),
+		tagName: 'li',
+		
+		template: _.template( myTemplate ),
 		
 		initialize: function() {},
 		
+		events: { },
+		
 		render: function() {
-			console.log( "HomeView.render()" );
-			this.$el.append( "<h2>Hello RIA!</h2>" );
+			this.$el.html( this.template( this.model.toJSON() ) );
+			return this;
 		}
 	});
 	

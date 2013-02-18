@@ -1,6 +1,6 @@
 @import url("bootstrap.min.css");
 @import url("bootstrap-responsive.min.css");
 
-body {
-	padding-top: 60px;
+#wrapper {
+    padding-top: 60px;
 }
