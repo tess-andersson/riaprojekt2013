@@ -1,24 +1,30 @@
 define([
     'jquery',
-    'underscore',
     'backbone',
-    'app/views/home/home-view'
-], function( $, _, Backbone, HomeView ) {
+    'app/views/home/home-view',
+    'app/models/list'
+], function( $, Backbone, HomeView, ListModel ) {
     var AppRouter = Backbone.Router.extend({
+        
+        // Placeholders for main content
+        mainPlaceholder: '#main',
         
         routes: {
             '': 'index',
-            'todos': 'todos',
+            'lists/:id': 'lists',
             '*actions': 'defaultRoute'
         },
 
         index: function() {
-            console.log('Route: index');
-            var homeView = new HomeView();
+            // Enbart för test av modell + vy
+            var list_model = new ListModel({ title: 'Min lista' });
+            var homeView = new HomeView({ el: $( this.mainPlaceholder ), model: list_model });
+            
+            // Render home view
             homeView.render();
         },
 
-        todos: function() {
+        lists: function() {
             console.log('Route: todos');
         },
 
