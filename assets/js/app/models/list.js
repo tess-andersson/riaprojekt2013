@@ -1,3 +1,5 @@
+// ### Model for List
+// _Defines default setup and relations_
 define([
 	'backbone',
 	'app/models/task'
@@ -6,25 +8,31 @@ define([
 		var ListModel = Backbone.RelationalModel.extend({
 						
 			initialize: function() {
-				console.log( 'Listmodel init' );
+				this.on('add:task', this.saveTask, this);
+				this.on('change:task', this.saveTask, this);
 			},
 			
 			defaults: {
-				title: 'Tom lista'
+				title: 'Ny lista'
 			},
 			
-			idAttribute: 'id',
+			validate: function( attrs ) { },
 			
 			relations: [{
 				type: Backbone.HasMany,
 				relatedModel: TaskModel,
 				key: 'tasks',
 				reverseRelation: {
-					key: 'project',
-					includeInJSON: 'id'
+					key: 'list'
 				}
-			}]
+			}],
 			
+			// On triggered events to add to collection
+			saveTask: function( t ) {
+				this.get('tasks').add( t );
+				this.save();
+			}
+					
 		});
 		
 		return ListModel;	

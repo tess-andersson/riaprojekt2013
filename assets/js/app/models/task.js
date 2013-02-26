@@ -1,20 +1,17 @@
+// ### Model for Task
+// _Defines default setup and relations_
 define([
 	'backbone'
 	], function( Backbone ){
 
 		var TaskModel = Backbone.RelationalModel.extend({
 
-			initialize: function() {
-				console.log( 'TaskModel init' );
-			},
-			
+			initialize: function() { },	
+
 			defaults: {
-				content: 'Det här måste göras',
+				content: 'Ny task',
 				complete: false
 			},
-			
-			idAttribute: '_id'
-
 		});
 
 		return TaskModel;	
