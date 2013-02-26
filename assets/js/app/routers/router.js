@@ -1,38 +1,52 @@
+// ### Main router
+// _Defines default routes and actions_
 define([
     'jquery',
     'backbone',
-    'app/views/home/home-view',
-    'app/models/list'
-], function( $, Backbone, HomeView, ListModel ) {
-    var AppRouter = Backbone.Router.extend({
+    'app/views/app-view',
+    'app/models/list',
+    'app/collections/list-collection',
+    'app/views/list/show-list-view'
+], function( $, Backbone, AppView, ListModel, ListCollection, ShowListView ) {
+    
+    var AppRouter = Backbone.Router.extend({      
         
-        // Placeholders for main content
-        mainPlaceholder: '#main',
+        initialize: function() {
+            this.list_collection = new ListCollection();
+            this.list_collection.fetch();
+            
+            // Primary placeholders
+            this.sidebar = "#sidebar";
+            this.main = "#main";       
+        },
         
         routes: {
             '': 'index',
-            'lists/:id': 'lists',
+            'list/:id': 'list',
             '*actions': 'defaultRoute'
         },
 
         index: function() {
-            // Enbart för test av modell + vy
-            var list_model = new ListModel({ title: 'Min lista' });
-            var homeView = new HomeView({ el: $( this.mainPlaceholder ), model: list_model });
-            
-            // Render home view
-            homeView.render();
+            // Initialize and render a new AppView  
+            var app_view = new AppView({ el: $( this.sidebar ), collection: this.list_collection, model: new ListModel() });
+            app_view.render();
         },
-
-        lists: function() {
-            console.log('Route: todos');
+        
+        // Buggar ur - routes + sidebar?
+        list: function( id ) {
+            
+            //this.index();
+            
+            var model = this.list_collection.get(id);
+            var list_view = new ShowListView( { el: $( this.main ), model: model } );
+            list_view.render(); 
         },
 
         defaultRoute: function( action ) {
             console.log('Route: ' + action);
         }
     });
-
+    // Starts up the application
     var initialize = function() {
         var router = new AppRouter();
         Backbone.history.start();

@@ -4,3 +4,20 @@
 #wrapper {
     padding-top: 60px;
 }
+
+.delete-btn {
+  float: right;
+}
+
+#all-lists a {
+    display: inline-block;
+    background: none;
+}
+
+.delete-btn.show {
+    display: inline;
+}
+
+.delete-btn.hide {
+    display: none;
+}
