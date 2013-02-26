@@ -4,7 +4,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!app/templates/_create-task.html',
+	'text!app/templates/create-task.html',
 	'app/models/task'
 ], function( $, _, Backbone, TaskTemplate, TaskModel ) {
 

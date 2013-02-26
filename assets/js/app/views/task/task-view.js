@@ -6,7 +6,7 @@ define([
 	'backbone',
 	'app/models/task',
 	'app/collections/task-collection',
-	'text!app/templates/_tasks.html'
+	'text!app/templates/tasks.html'
 ], function( $, _, Backbone, TaskModel, TaskCollection, TaskTemplate ) {
 
 	var TaskView = Backbone.View.extend({

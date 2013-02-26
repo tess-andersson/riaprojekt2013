@@ -4,7 +4,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!app/templates/_list.html',
+	'text!app/templates/list.html',
 	'app/models/task',
 	'app/views/task/task-view',
 	'app/views/task/create-task-view'

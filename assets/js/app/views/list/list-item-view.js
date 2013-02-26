@@ -4,7 +4,7 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'text!app/templates/_list-item.html',
+	'text!app/templates/list-item.html',
 	'app/views/list/show-list-view'
 ], function( $, _, Backbone, ListItemTemplate, ShowListView ) {
 
