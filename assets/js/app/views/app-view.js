@@ -6,7 +6,7 @@ define([
 	'backbone',
 	'app/collections/list-collection',
 	'app/views/list/list-item-view',
-	'text!app/templates/_sidebar.html'
+	'text!app/templates/sidebar.html'
 ], function( $, _, Backbone, ListCollection, ListItemView, SidebarTemplate ) {
 
 	var AppView = Backbone.View.extend({
